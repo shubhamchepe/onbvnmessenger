@@ -99,7 +99,6 @@ const SignIn = ({navigation,store}) => {
           iscon:state.type,
           statusbarcolour :"#2F1A46"
         }})
-        getData();
       }
     });
       
@@ -141,25 +140,6 @@ const SignIn = ({navigation,store}) => {
     });
   };
 
-  const getData = async () => {
-    console.log('Get Data Function Running...')
-    try {
-      const value = await AsyncStorage.getItem('AsyncValues');
-      const parsedValue = JSON.parse(value)
-      console.log(parsedValue)
-      const eml = parsedValue.email;
-      const ps = parsedValue.password;
-      if(value !== null) {
-        dispatch({type:'reduxloginvalue',payload:{
-            email:eml,
-            password:ps
-          }})
-          Login(eml,ps)
-      }
-    } catch(e) {
-      console.log(e)
-    }
-  }
 
   // const submitLogin = () => {
   //   console.log(email,password)

@@ -17,6 +17,7 @@ import {Provider,useSelector,useDispatch} from 'react-redux';
 import {reducer} from './Reducer/reducer';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth, {firebase} from '@react-native-firebase/auth';
 
 
 
@@ -36,7 +37,10 @@ const AuthStackScreen = ()=> (
 const Tabs = createBottomTabNavigator();
 const AppStackScreen = ()=> (
     <Tabs.Navigator  tabBarOptions={{
-        showLabel:false
+        showLabel:false,
+        style: {
+            backgroundColor: '#6F6F6F',
+         }
       }} initialRouteName='Chats' screenOptions={({route})=>({
         tabBarIcon: ({color,size}) =>{
             let iconName 
@@ -49,7 +53,7 @@ const AppStackScreen = ()=> (
             else if(route.name == 'Profile'){
                 iconName = 'user'
             }
-            return  <Icons name={iconName} size={30} color="#924AA3" />
+            return  <Icons name={iconName} size={30} color="#E5F314" />
         }
     })}>
       <Tabs.Screen name='Scan' component={ScanStackScreen}/>  
@@ -77,7 +81,7 @@ const ScanStackScreen = () => (
 )
 
 const ChatStackScreen = () => (
-    <ChatStack.Navigator>
+    <ChatStack.Navigator headerMode='none'>
         <ChatStack.Screen name='ChatScreen' component={ChatScreen}/>
         {/* <ChatStack.Screen name='ChatScreen' component={ChatScreen}/> */}
         {/* we can add more screens here as a stack for this particular stack  */}
@@ -136,35 +140,46 @@ export default () =>{
     }
 
     
-const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('AsyncValues');
-      const parsedValue = JSON.parse(value)
+// const getData = async () => {
+//     try {
+//       const value = await AsyncStorage.getItem('AsyncValues');
+//       const parsedValue = JSON.parse(value)
       
-      if(value !== null) {
-            auth()
-            .signInWithEmailAndPassword(parsedValue.email,parsedValue.password)
-            .then(authRes => {
-                console.log(authRes)
-                signIn(authRes.user.uid);
-            }, authError => {
-                console.log(authError);
-                ChangesignupError('Failed to create user')
-            })
+//       if(value !== null) {
+//             auth()
+//             .signInWithEmailAndPassword(parsedValue.email,parsedValue.password)
+//             .then(authRes => {
+//                 console.log(authRes)
+//                 signIn(authRes.user.uid);
+//             }, authError => {
+//                 console.log(authError);
+//                 ChangesignupError('Failed to create user')
+//             })
         
       
 
-      }else{
-          setLoading(false)
-      }
-    } catch(e) {
-      console.log(e)
+//       }else{
+//           setLoading(false)
+//       }
+//     } catch(e) {
+//       console.log(e)
+//     }
+//   }
+
+const onAuthStateChanged = (user) => {
+    if(user){
+        console.log("Ye Wala")
+        console.log(user)
+        signIn(user)
+    }else{
+        setLoading(false); 
     }
   }
 
     React.useEffect(()=>{
-       
-    getData();
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+    //getData();
       
     },[])
     if(isLoading){
