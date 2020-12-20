@@ -119,20 +119,6 @@ export default () =>{
         }
     },[])
 
-    // const Login =  (eml,ps) =>{
-    //     auth()
-    //     .signInWithEmailAndPassword(eml,ps)
-    //     .then(authRes => {
-    //         const userObj = {
-    //             email: authRes.user.email,
-    //         };
-    //         console.log(authRes)
-    //         signIn(authRes.user.uid);
-    //     }, authError => {
-    //         console.log(authError);
-    //         ChangesignupError('Failed to create user')
-    //     })
-    // }
 
     const signIn = (Token) => {
         setLoading(false);
@@ -140,31 +126,7 @@ export default () =>{
     }
 
     
-// const getData = async () => {
-//     try {
-//       const value = await AsyncStorage.getItem('AsyncValues');
-//       const parsedValue = JSON.parse(value)
-      
-//       if(value !== null) {
-//             auth()
-//             .signInWithEmailAndPassword(parsedValue.email,parsedValue.password)
-//             .then(authRes => {
-//                 console.log(authRes)
-//                 signIn(authRes.user.uid);
-//             }, authError => {
-//                 console.log(authError);
-//                 ChangesignupError('Failed to create user')
-//             })
-        
-      
 
-//       }else{
-//           setLoading(false)
-//       }
-//     } catch(e) {
-//       console.log(e)
-//     }
-//   }
 
 const onAuthStateChanged = (user) => {
     if(user){

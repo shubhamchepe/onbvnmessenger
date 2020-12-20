@@ -141,38 +141,7 @@ const SignIn = ({navigation,store}) => {
   };
 
 
-  // const submitLogin = () => {
-  //   console.log(email,password)
-  //   firebase.auth()
-  //   .createUserWithEmailAndPassword(email,password)
-  //   .then(authRes => {
-  //       const userObj = {
-  //           email: authRes.user.email,
-  //       };
-  //       console.log(authRes);
-  //       console.log(authRes.user.uid);
-  //       const Tkn = {
-  //         email: email,
-  //         pass: password,
-  //         Token: authRes.user.uid
-  //       }
-  //        storeData(Tkn);
-  //       firebase.firestore()
-  //       .collection('users').doc(email).set(userObj)
-  //       .then(() => {
-  //         signIn(authRes.user.uid)
-  //       }, dbError => {
-  //           console.log(dbError);
-  //           ChangesignupError('Database error')
-  //           // this.setState({ signupError: 'Database error' })
-  //       })
-  //   }, authError => {
-  //       console.log(authError);
-  //       ChangesignupError('Failed to create user')
-  //       //this.setState({ signupError: 'Failed to create user' })
-  //   })
-      
-  // }
+
 
 const changeColour = () => {
   if(ColourChange === 'green'){

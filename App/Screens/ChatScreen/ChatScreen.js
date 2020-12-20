@@ -25,25 +25,6 @@ import {
 
  const ChatScreen = ({navigation}) => {
   const Item = ({ title , msg, time, count, read}) => (
-    // <View style={styles.item}>
-      
-    //     <Image style={styles.dp}
-    //     source={require('../../Assets/dp.png')} />
-
-    //   <View style={{flexDirection: 'column',alignItems: 'flex-start',top: 15}}>
-    //   <Text style={styles.title}>{title}</Text>
-    //   <Text style={styles.msg}>{msg}</Text>
-    //   </View>
-    //   <View style={{flexDirection: 'column',alignItems: 'flex-end',bottom:15}}>
-    //    <View style={{width: 30, height: 30, borderRadius: 15, backgroundColor: '#FFFF',alignItems: 'center',justifyContent:'center'}}>
-    //    <Text style={styles.count}>{count}</Text>
-    //    </View> 
-      
-    //   <Text style={styles.time}>{time}</Text>
-      
-    //   </View>
-      
-    // </View>
     <View style={[styles.item, {backgroundColor:read == true ? textcolor : chatListitemY}]}>
      <View style={styles.ListLeft}>
       <View>
